@@ -1,0 +1,10 @@
+.card{:style => "width: 18rem;"}
+  %img.card-img-top{:alt => "...", :src => "..."}/
+  .card-body
+    %h5.card-title Hello World
+    %i.fas.fa-home
+    %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+    / <haml_loud> link_to &quot;Privacy Policy&quot;, privacy_policy_path, class: &quot;btn btn-primary&quot;  </haml_loud>
+    = link_to privacy_policy_path, class: "btn btn-primary" do
+      %i.fas.fa-passport
+      Privacy Policy
