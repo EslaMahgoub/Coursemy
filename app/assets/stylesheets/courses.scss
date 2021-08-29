@@ -1,0 +1,14 @@
+// Place all the styles related to the courses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// To allow card-columns while rendering cards
+.grid-container {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 20px;
+    text-align: center;
+    margin-top: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}

@@ -1,0 +1,9 @@
+.card
+  .card-header
+    %h1 Editing course
+  .card-body
+    = render 'form'
+  .card-footer
+    = link_to 'Show', @course, class: "btn btn-secondary"
+    \
+    = link_to 'Back', courses_path, class: "btn btn-warning"
