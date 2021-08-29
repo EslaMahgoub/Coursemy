@@ -1,0 +1,32 @@
+.card
+  .card-header
+    .fa.fa-user
+    = user.email
+  .card-footer
+    Signed Up
+    //show how long this user has been created
+    = time_ago_in_words(user.created_at)  
+    ago
+  .card-footer
+    // .humanzie => capital the first later, change underscore into spaces
+    .row
+      ='sign_in_count: '.humanize
+      = user.sign_in_count
+    .row
+      ='current_sign_in_at: '.humanize
+      = user.current_sign_in_at
+    .row
+      ='last_sign_in_at: '.humanize
+      = user.last_sign_in_at
+    .row
+      ='current_sign_in_ip: '.humanize
+      = user.current_sign_in_ip
+    .row
+      ='last_sign_in_ip: '.humanize
+      = user.last_sign_in_ip
+  .card-footer
+    Confirmed Email?
+    -if user.confirmed_at.present?
+      .badge.bg-success Yes
+    -else
+      .badge.bg-danger No
