@@ -5,5 +5,7 @@ class ApplicationController < ActionController::Base
   def set_global_action
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) #navbar search
   end
+    
+  include PublicActivity::StoreController #store the user that made any changes to the course model
   
 end

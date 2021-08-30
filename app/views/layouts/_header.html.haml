@@ -25,6 +25,11 @@
               .fa.fa-users
               Users
               
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(home_activity_path)}"}
+            = link_to home_activity_path, class: 'nav-link' do
+              .fa.fa-bell
+              Activity
+              
         
         
         %ul.navbar-nav.ms-auto

@@ -1,0 +1,10 @@
+%h1 Activity
+
+
+- @activities.each do |activity|
+  .row 
+  = activity.id 
+  |
+  = link_to activity.trackable, activity.trackable
+  = activity.owner
+  = activity.key
