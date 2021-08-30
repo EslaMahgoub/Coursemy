@@ -12,7 +12,7 @@
               Home
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
             = link_to courses_path, class: 'nav-link' do
-              .fa.fa-book
+              .fa.fa-graduation-cap
               Courses
               
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_course_path)}"}
@@ -24,16 +24,24 @@
             = link_to users_path, class: 'nav-link' do
               .fa.fa-users
               Users
+              
         
-        // Search bar
+        
         %ul.navbar-nav.ms-auto
-          .form-inline.my-2.my-lg-0
-          = form_tag(courses_path, method: :get) do
+          //SEARCH IN NAVBAR
+          = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
             .input-group
-              = text_field_tag :title, params[:title], autocomplete: 'on', placeholder: "Search", class: 'form-control-sm'
+              = f.search_field :title_or_short_description_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off
               %span.input-group-append
                 %button.btn.btn-primary.btn-sm{:type => "submit"}
                   %span.fa.fa-search{"aria-hidden" => "true"}
+          /.form-inline.my-2.my-lg-0
+          /  = form_tag(courses_path, method: :get) do
+          /    .input-group
+          /      = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Find a course", class: 'form-control-sm'
+          /      %span.input-group-append
+          /        %button.btn.btn-primary.btn-sm{:type => "submit"}
+          /          %span.fa.fa-search{"aria-hidden" => "true"}
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
             = link_to root_path, class: 'nav-link' do
               .fa.fa-home

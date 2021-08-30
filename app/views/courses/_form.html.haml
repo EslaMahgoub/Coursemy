@@ -6,7 +6,12 @@
   .form-inputs
     = f.input :title
     = f.input :description, as: :rich_text_area
+    = f.input :short_description
+    = f.input :language, collection: Course.languages, include_blank: true
+    //= f.input :level, collection: [ "Beginner", "Intermediate", "Advanced"]
+    = f.input :level, collection: Course.levels, include_blank: true
+    = f.input :price
   
   %p
   .form-actions
-    = f.button :submit, class: "btn btn-success"
+    = f.button :submit
