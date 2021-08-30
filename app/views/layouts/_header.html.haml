@@ -57,6 +57,8 @@
                 .fa.fa-sign-out-alt
                 %b Sign out
       - else
-        %ul.navbar-nav
-          %li.nav-item= link_to 'Sign Up', new_user_registration_path, class: "nav-link #{'active fw-bold' if current_page?(new_user_session_path)}"
-          %li.nav-item= link_to 'Log In', new_user_session_path, class: "nav-link #{'active fw-bold' if current_page?(new_user_registration_path)}"
+        %ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_user_registration_path)}"}
+            = link_to 'Sign Up', new_user_registration_path, class: 'nav-link'
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_user_session_path)}"}
+            = link_to 'Log In', new_user_session_path, class: 'nav-link'
