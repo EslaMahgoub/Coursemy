@@ -1,0 +1,22 @@
+%hr
+%footer
+  .container
+    .row
+      .col-md-4
+        Copyright
+        © 
+        = Time.now.year
+        Coursemy
+        .row
+        .fa.fa-envelope
+        = mail_to 'eslamkhaledtawfik@gmail.com'
+        .row
+      .col-md-4
+        = link_to 'Privacy policy', privacy_policy_path 
+        .row
+        Terms and conditions
+      .col-md-4
+        About us
+        .row
+        = link_to 'Teach on CoursePlatform', new_course_path
+%br 

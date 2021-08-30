@@ -1,3 +1,9 @@
+%h3
+  .text-center
+    Users
+    .badge.bg-info
+      = @users.count
+      
 .grid-container
   - @users.each do |user|
     = render 'users/user', user: user  

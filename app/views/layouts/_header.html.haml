@@ -25,13 +25,6 @@
               .fa.fa-users
               Users
               
-          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(home_activity_path)}"}
-            = link_to home_activity_path, class: 'nav-link' do
-              .fa.fa-bell
-              Activity
-              
-        
-        
         %ul.navbar-nav.ms-auto
           //SEARCH IN NAVBAR
           = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
@@ -47,10 +40,10 @@
           /      %span.input-group-append
           /        %button.btn.btn-primary.btn-sm{:type => "submit"}
           /          %span.fa.fa-search{"aria-hidden" => "true"}
-          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
-            = link_to root_path, class: 'nav-link' do
-              .fa.fa-home
-              Another link
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(home_activity_path)}"}
+            = link_to home_activity_path, class: 'nav-link' do
+              .fa.fa-bell
+              Activity
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
               %b= current_user.email
