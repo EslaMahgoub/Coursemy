@@ -1,1 +1,16 @@
 @import "./actiontext.scss";
+
+// instead of card-columns which removed in bootstrap 5
+.grid-container {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 20px;
+    text-align: center;
+    margin-top: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+// remove confirmation icons within the form field
+.form-control.is-invalid{ background-image: none;} // 
+.form-control.is-valid{ background-image: none;}
