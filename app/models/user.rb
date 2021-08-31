@@ -34,6 +34,11 @@ class User < ApplicationRecord
   end
   
   
+  def online?
+    updated_at > 2.minutes.ago
+  end
+  
+  
   #make sure that each user on the system has at least one roll
   validate :must_have_a_role, on: :update
   
@@ -43,5 +48,7 @@ class User < ApplicationRecord
       errors.add(:roles, "Must have at least one role")
     end
   end
+  
+  
   
 end
