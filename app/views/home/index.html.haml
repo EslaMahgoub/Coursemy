@@ -52,19 +52,19 @@
 
 
 %hr
-  %h3
+  %h4
     Popular Courses
     .grid-container
       - @courses.each do |course|
         = render 'courses/course', course: course
 %hr
-  %h3
+  %h4
     Top Rated Courses
     .grid-container
       - @courses.each do |course|
         = render 'courses/course', course: course
 %hr
-  %h3
+  %h4
     Latest Courses
   .grid-container
     - @latest_courses.each do |course|

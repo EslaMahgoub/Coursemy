@@ -59,5 +59,7 @@ gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
 gem 'ransack'
 gem 'public_activity'
+gem "rolify"
+gem "pundit"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 #gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
