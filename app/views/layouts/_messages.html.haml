@@ -1,3 +1,4 @@
+// Centralize alert for the whole app
 - flash.each do |name, msg|
   - if msg.is_a?(String)
     %div{:class => "alert alert-warning alert-dismissible fade show -#{name.to_s == 'notice' ? 'success' : 'danger'}", :role => "alert"}

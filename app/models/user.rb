@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :courses
   
   extend FriendlyId
-  friendly_id :email, use: :slugged   # use title as slug
+  friendly_id :email, use: :slugged   # use email as slug
   
   after_create :assign_default_role
 

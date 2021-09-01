@@ -2,6 +2,7 @@ class Course < ApplicationRecord
   validates :title, :short_description, :language, :level, :price, presence: true
   validates :description, presence: true, length: { :minimum => 5} 
   belongs_to :user
+  has_many :lessons, dependent: :destroy   #destroy lessons when course is destroyed
   
   def to_s
     title

@@ -5,9 +5,6 @@ class CoursePolicy < ApplicationPolicy
     end
   end
   
-  # def show?
-  #   @user.has_role?(:admin) || @record.user_id == @user.id
-  # end
   
   def edit?
     @user.has_role?(:admin) || @record.user_id == @user.id

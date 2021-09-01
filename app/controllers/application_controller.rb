@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   after_action :user_activity  
   include Pundit
 
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     
   include PublicActivity::StoreController #store the user that made any changes to the course model
   
