@@ -1,6 +1,19 @@
+- content_for :title do
+  Coursemy
+  \/
+  Course
+  = @course.title
+  \/
+  New Lesson
+= link_to 'Courses', courses_path
+\/
+= link_to @course.title, course_path(@course)
+%p
 .card
   .card-header
-    %h1 New lesson
+    %h3 
+      .far.fa-check-square
+      New lesson
   .card-body
     = render 'form'
   .card-footer

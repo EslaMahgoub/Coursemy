@@ -1,12 +1,17 @@
+- content_for :title do
+  Coursemy
+  \|
+  All Users
+
 %h3
   .text-center
     Users
     .badge.bg-info
       = @users.count
       
-.grid-container
-  - @users.each do |user|
-    = render 'users/user', user: user  
+// .grid-container
+//   - @users.each do |user|
+//     = render 'users/user', user: user  
     
 .form-inline
   = search_form_for @q do |f|
@@ -29,14 +34,32 @@
       %th= 'last_sign_in_at'.humanize
       %th= 'current_sign_in_ip'.humanize
       %th= 'last_sign_in_ip'.humanize
+      %th= 'Confirmed Email?'
+      %th= 'Roles'
   %tbody
     - @users.each do |user|
       %tr
         %td= user.id
-        %td= user.email
+        %td 
+          - if user.online?
+            .text-success.fas.fa-circle
+          - else
+            .text-danger.fas.fa-circle
+          =link_to user.email, user_path(user)
         %td= user.created_at
         %td= user.sign_in_count
         %td= user.current_sign_in_at
         %td= user.last_sign_in_at
         %td= user.current_sign_in_ip
         %td= user.last_sign_in_ip
+        %td 
+          - if user.confirmed_at.present?
+            .badge.bg-success Yes
+          - else
+            .badge.bg-danger No
+        %td 
+          - user.roles.each do |role|
+            .badge.bg-info
+              = role.name
+          - if policy(user).edit?
+            = link_to "Edit Roles", edit_user_path(user), class: "btn btn-sm btn-warning"

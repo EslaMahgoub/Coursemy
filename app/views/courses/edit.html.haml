@@ -1,6 +1,17 @@
+- content_for :title do
+  Coursemy
+  \|
+  Edit
+  = @course.title
+= link_to 'Courses', courses_path
+\/
+= link_to @course.title, course_path(@course)
+%p
 .card
   .card-header
-    %h1 Editing course
+    %h3
+      .fas.fa-graduation-cap
+      Editing course
   .card-body
     = render 'form'
   .card-footer
