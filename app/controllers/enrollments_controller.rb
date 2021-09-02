@@ -3,8 +3,9 @@ class EnrollmentsController < ApplicationController
   before_action :set_course, only: %i[ new create ]
   # GET /enrollments or /enrollments.json
   def index
-    @enrollments = Enrollment.all
-    # authorize @enrollments
+    # @enrollments = Enrollment.all
+    @pagy, @enrollments = pagy(Enrollment.all)
+    authorize @enrollments
   end
 
   # GET /enrollments/1 or /enrollments/1.json
@@ -68,6 +69,6 @@ class EnrollmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def enrollment_params
-      params.require(:enrollment).permit(:course_id, :user_id, :rating, :review)
+      params.require(:enrollment).permit(:rating, :review)
     end
 end

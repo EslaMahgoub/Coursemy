@@ -58,5 +58,5 @@
           %td= link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
   
   %br
-  
-  = link_to 'New Enrollment', new_enrollment_path
+  != pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 
+  /= link_to 'New Enrollment', new_enrollment_path
