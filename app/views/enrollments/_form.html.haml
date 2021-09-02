@@ -4,7 +4,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :rating
+    //, as: :radio_buttons
+    = f.input :rating, collection: 1..5 
     = f.input :review
   
   %p

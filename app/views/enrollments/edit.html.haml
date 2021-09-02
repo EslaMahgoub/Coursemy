@@ -1,17 +1,17 @@
 - content_for :title do
   Coursemy
   \|
-  Editing enrollment
+  Add Review
   = @enrollment.to_s
 %p
 .card
   .card-header
     %h3
-      .fas.fa-lock-open
-      Editing enrollment
+      .text-warning.fas.fa-star
+      Add Review
   .card-body
     = render 'form'
   .card-footer
-    = link_to 'Show', @enrollment, class: "btn btn-secondary"
+    = link_to 'Show Review', @enrollment, class: "btn btn-secondary"
     \|
-    = link_to 'Back', enrollments_path, class: "btn btn-warning"
+    = link_to 'Back to course', course_path(@enrollment.course), class: "btn btn-warning"

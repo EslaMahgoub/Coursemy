@@ -4,7 +4,7 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments or /enrollments.json
   def index
     @enrollments = Enrollment.all
-    authorize @enrollments
+    # authorize @enrollments
   end
 
   # GET /enrollments/1 or /enrollments/1.json
@@ -24,8 +24,8 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments or /enrollments.json
   def create
     if @course.price > 0
-      flash[:alert] = "You can not access this course, pay first"
-      redirect_to new_coruse_enrollement_path(@course)
+      flash[:alert] = "You can not access this course, you need to buy it first"
+      redirect_to new_course_enrollment_path(@course)
     else
       @enrollment = current_user.buy_course(@course)
       redirect_to course_path(@course), notice: "You Have successfully enrolled in this course"
