@@ -3,8 +3,9 @@ class EnrollmentsController < ApplicationController
   before_action :set_course, only: %i[ new create ]
   # GET /enrollments or /enrollments.json
   def index
-    # @enrollments = Enrollment.all
-    @pagy, @enrollments = pagy(Enrollment.all)
+    @q = Enrollment.ransack(params[:q])
+    # @enrollments = @q.result(distinct: true)
+    @pagy, @enrollments = pagy(@q.result.includes(:user))
     authorize @enrollments
   end
 
@@ -63,8 +64,9 @@ class EnrollmentsController < ApplicationController
     def set_course
       @course = Course.friendly.find(params[:course_id])
     end 
+    
     def set_enrollment
-      @enrollment = Enrollment.find(params[:id])
+      @enrollment = Enrollment.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -8,6 +8,17 @@
     Enrollments
     .badge.bg-info
       = @enrollments.count
+      
+= search_form_for @q do |f|
+  // _cont for strings, _eq for integers, ransack methods
+  = f.search_field :user_email_cont, placeholder: 'User'
+  = f.search_field :course_title_cont, placeholder: 'Course'
+  = f.search_field :price_eq, placeholder: 'Price'
+  = f.search_field :review_cont, placeholder: 'Review'
+  = f.search_field :rating_eq, placeholder: 'Rating'   
+  = f.submit
+.ml-2
+= link_to 'refresh', enrollments_path
 
 .table-responsive
   %table.table.table-bordered.table-striped.table-sm
@@ -16,23 +27,23 @@
         %th ID
         %th
           .fa.fa-user
-          User
+          = sort_link(@q, :user_email)
         %th 
           .fa.fa-clock
           .fa.fa-lock-open
           Enrolled At
         %th 
           .fa.fa-graduation-cap
-          Course
+          = sort_link(@q, :course_title)
         %th
           .fa.fa-dollar-sign
-          Price
+          = sort_link(@q, :price)
         %th
           .text-warning.fa.fa-clock
-          Reviewed on
+          = sort_link(@q, :updated_at)
         %th
           .text-warning.fa.fa-star
-          Rating
+          = sort_link(@q, :rating)
         %th 
           .text-warning.fa.fa-comment
           Review
