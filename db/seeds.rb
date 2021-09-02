@@ -1,5 +1,7 @@
 # User.create!(email: "admin@admin.com", password: "admin@admin.com", password_confirmation: "admin@admin.com")
 
+
+PublicActivity.enabled = false
 30.times do
   Course.create!([{
     title: Faker::Educator.course_name,
@@ -11,3 +13,5 @@
     price: Faker::Number.between(from: 10, to: 100), 
   }])
 end
+
+PublicActivity.enabled = true

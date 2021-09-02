@@ -18,7 +18,9 @@ class CoursesController < ApplicationController
     #   redirect_to root_path, alert: "You don't have access"
     # end
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
-    @courses = @ransack_courses.result.includes(:user)
+    #@courses = @ransack_courses.result.includes(:user)
+    
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
   end
 
   # GET /courses/1 or /courses/1.json
