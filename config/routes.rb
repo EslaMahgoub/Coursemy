@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :enrollments, only: %i[ new create ]
   end
   get 'home/index'
-  get "home/activity"
+  get "activity", to: "home#activity"
   get "privacy_policy", to: "home#privacy_policy"
   root "home#index"
   #get 'static_pages/privacy_policy'
