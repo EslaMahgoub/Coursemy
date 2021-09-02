@@ -15,6 +15,7 @@ class User < ApplicationRecord
   end
   
   has_many :courses
+  has_many :enrollments
   
   extend FriendlyId
   friendly_id :email, use: :slugged   # use email as slug
@@ -38,6 +39,9 @@ class User < ApplicationRecord
     updated_at > 2.minutes.ago
   end
   
+  def buy_course(course)
+    self.enrollments.create(course: course, price: course.price)
+  end
   
   #make sure that each user on the system has at least one roll
   validate :must_have_a_role, on: :update

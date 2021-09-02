@@ -1,0 +1,18 @@
+- content_for :title do
+  Coursemy
+  \|
+  New enrollment
+  
+.card
+  .card-header
+    %h3
+      .fas.fa-graduation-cap
+      = link_to @course.title, course_path(@course)
+      %hr
+      .fas.fa-lock-open
+      Buy Course
+  .card-body
+    = form_tag course_enrollments_path(@course) do
+      = submit_tag "Pay #{number_to_currency(@course.price)}", class: "btn btn-lg btn-success"
+  .card-footer
+    = link_to 'Back', course_path(@course), class: "btn btn-warning"

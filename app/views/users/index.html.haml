@@ -23,43 +23,44 @@
   .ml-2
   = link_to 'refresh', users_path
 
-%table.table.table-bordered
-  %thead
-    %tr
-      %th id
-      %th= sort_link(@q, :email)
-      %th created_at
-      %th= 'sign_in_count'.humanize
-      %th= 'current_sign_in_at'.humanize
-      %th= 'last_sign_in_at'.humanize
-      %th= 'current_sign_in_ip'.humanize
-      %th= 'last_sign_in_ip'.humanize
-      %th= 'Confirmed Email?'
-      %th= 'Roles'
-  %tbody
-    - @users.each do |user|
+.table-responsive
+  %table.table.table-bordered
+    %thead
       %tr
-        %td= user.id
-        %td 
-          - if user.online?
-            .text-success.fas.fa-circle
-          - else
-            .text-danger.fas.fa-circle
-          =link_to user.email, user_path(user)
-        %td= user.created_at
-        %td= user.sign_in_count
-        %td= user.current_sign_in_at
-        %td= user.last_sign_in_at
-        %td= user.current_sign_in_ip
-        %td= user.last_sign_in_ip
-        %td 
-          - if user.confirmed_at.present?
-            .badge.bg-success Yes
-          - else
-            .badge.bg-danger No
-        %td 
-          - user.roles.each do |role|
-            .badge.bg-info
-              = role.name
-          - if policy(user).edit?
-            = link_to "Edit Roles", edit_user_path(user), class: "btn btn-sm btn-warning"
+        %th id
+        %th= sort_link(@q, :email)
+        %th created_at
+        %th= 'sign_in_count'.humanize
+        %th= 'current_sign_in_at'.humanize
+        %th= 'last_sign_in_at'.humanize
+        %th= 'current_sign_in_ip'.humanize
+        %th= 'last_sign_in_ip'.humanize
+        %th= 'Confirmed Email?'
+        %th= 'Roles'
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td 
+            - if user.online?
+              .text-success.fas.fa-circle
+            - else
+              .text-danger.fas.fa-circle
+            =link_to user.email, user_path(user)
+          %td= user.created_at
+          %td= user.sign_in_count
+          %td= user.current_sign_in_at
+          %td= user.last_sign_in_at
+          %td= user.current_sign_in_ip
+          %td= user.last_sign_in_ip
+          %td 
+            - if user.confirmed_at.present?
+              .badge.bg-success Yes
+            - else
+              .badge.bg-danger No
+          %td 
+            - user.roles.each do |role|
+              .badge.bg-info
+                = role.name
+            - if policy(user).edit?
+              = link_to "Edit Roles", edit_user_path(user), class: "btn btn-sm btn-warning"
