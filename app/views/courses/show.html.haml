@@ -12,7 +12,7 @@
     = render 'courses/course', course: @course
   .col-lg-6
     // pass course id to the new lesson created by default
-    - if policy(@course).edit?
+    - if policy(@course).owner?
       = link_to "Add New Lesson", new_course_lesson_path(@course, @lesson), class: "btn btn-sm btn-warning d-grid gap-2" 
       %p
     - @lessons.each do |lesson|

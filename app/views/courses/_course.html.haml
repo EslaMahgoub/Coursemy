@@ -11,8 +11,15 @@
       = review_button(course)
       /= number_to_currency(course.price)
   .card-footer
+    .text-warning.fas.fa-star
+      = course.average_rating
+    (  
+    .fas.fa-user-graduate
+    = course.enrollments_count
+    )
+  .card-footer
     .fas.fa-book
-    = course.lessons.count
+    = course.lessons_count
   .card-footer
     .row
       .col-md-6

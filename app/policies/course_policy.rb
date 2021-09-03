@@ -26,6 +26,9 @@ class CoursePolicy < ApplicationPolicy
     @user.has_role?(:admin) || @record.user_id == @user.id
   end
   
+  def owner?
+    @record.user_id == @user.id
+  end
   
   
 end
