@@ -57,22 +57,38 @@
 
 
 %hr
-  %h4
-    Popular Courses
-    .grid-container
-      - @courses.each do |course|
-        = render 'courses/course', course: course
+%h4
+  .fas.fa-user-graduate
+  Continue Learning
+.grid-container
+  - @purchased_courses.each do |course|
+    = render 'courses/course', course: course
 %hr
-  %h4
-    Top Rated Courses
-    .grid-container
-      - @courses.each do |course|
-        = render 'courses/course', course: course
+%h4
+  .fas.fa-chart-line
+  Popular Courses
+.grid-container
+  - @popular_courses.each do |course|
+    = render 'courses/course', course: course
 %hr
-  %h4
-    Latest Courses
-  .grid-container
-    - @latest_courses.each do |course|
-      = render 'courses/course', course: course
+%h4
+  .fas.fa-star
+  Top Rated Courses
+.grid-container
+  - @top_rated_courses.each do |course|
+    = render 'courses/course', course: course
+%hr
+%h4
+  .fas.fa-clock
+  Latest Courses
+.grid-container
+  - @latest_courses.each do |course|
+    = render 'courses/course', course: course
       
 %hr
+%h4
+  .fas.fa-comment
+  What is our studnet saying
+.grid-container
+  - @latest_good_reviews.each do |enrollment|
+    = render 'enrollments/enrollment', enrollment: enrollment

@@ -4,7 +4,7 @@ class Course < ApplicationRecord
   
   
   belongs_to :user, counter_cache: true
-  #User.find_each { |user| User.reset_counters(user.id, :courses) }  
+  #User.find_each { |user| User.reset_counters(user.id, :courses) }  counter cache for old records
   has_many :lessons, dependent: :destroy   #destroy lessons when course is destroyed
   has_many :enrollments
   
@@ -13,6 +13,10 @@ class Course < ApplicationRecord
   def to_s
     title
   end
+  
+  scope :latest_courses, -> { limit(3).order(created_at: :desc) } 
+  scope :popular_courses, -> { limit(3).order(enrollments_count: :desc, created_at: :desc) }
+  scope :top_rated_courses, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
   
   has_rich_text :description
   extend FriendlyId
