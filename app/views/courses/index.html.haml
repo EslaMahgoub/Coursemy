@@ -11,7 +11,7 @@
 
 .row
   .col-md-2
-    = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
+    = search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |f|
       // _cont for strings, _eq for integers, ransack methods
       = f.label :title
       = f.search_field :title_cont, placeholder: 'Title', class: "form-control form-control-sm"
@@ -34,7 +34,7 @@
       %p
       = f.submit
     .ml-2
-    = link_to 'refresh', courses_path
+    = link_to 'refresh', @ransack_path
   .col-md-10
     .grid-container
       - @courses.each do |course|
