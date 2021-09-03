@@ -33,9 +33,19 @@
       = f.label :teacher
       = f.search_field :user_email_cont, placeholder: 'User email', class: "form-control form-control-sm"
       %p
+      = sort_link(@ransack_courses, :price)
+      .row
+      = sort_link(@ransack_courses, :average_rating, "Top Rated")
+      .row
+      = sort_link(@ransack_courses, :enrollments_count, "Popular")
+      .row
+      = sort_link(@ransack_courses, :created_at, "Latest")
+      
+      .row
       = f.submit
     .ml-2
     = link_to 'refresh', @ransack_path
+    
   .col-md-10
     .grid-container
       - @courses.each do |course|
