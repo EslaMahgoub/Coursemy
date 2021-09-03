@@ -17,8 +17,9 @@ class Lesson < ApplicationRecord
   end
   
   def viewed(user)
-    self.user_lessons.where(user: user).present?
+    unless user == self.course.user # if user != self.course.user
+      self.user_lessons.where(user: user).present?
     # self.user_lessons.where(user_id: user.id, lesson: self.id).present?
-    
+    end
   end
 end

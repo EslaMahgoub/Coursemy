@@ -7,11 +7,18 @@ class Course < ApplicationRecord
   #User.find_each { |user| User.reset_counters(user.id, :courses) }  counter cache for old records
   has_many :lessons, dependent: :destroy   #destroy lessons when course is destroyed
   has_many :enrollments
+  has_many :user_lessons, through: :lessons # get user_lessons related to lessons 
   
   validates :title, uniqueness: true
   
   def to_s
     title
+  end
+  
+  def progress(user)
+    unless self.lessons.count == 0 #if self.lessons.count != 0
+      user_lessons.where(user: user).count / self.lessons.count.to_f * 100
+    end
   end
   
   scope :latest_courses, -> { limit(3).order(created_at: :desc) } 
