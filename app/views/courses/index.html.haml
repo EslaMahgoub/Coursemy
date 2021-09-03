@@ -1,11 +1,12 @@
 - content_for :title do
   Coursemy
   \|
-  All Courses
+  = action_name.humanize
 
 %h3
   .text-center
-    Courses
+    = action_name.humanize
+    courses
     .badge.bg-info
       = @courses.count
 

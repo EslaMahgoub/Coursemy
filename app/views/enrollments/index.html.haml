@@ -1,10 +1,11 @@
 - content_for :title do
   Coursemy
   \|
-  All Enrollments
+  = action_name.humanize
   
 %h3
   .text-center
+    = action_name.humanize
     Enrollments
     .badge.bg-info
       = @enrollments.count
