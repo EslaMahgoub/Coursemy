@@ -1,5 +1,5 @@
 class UserLesson < ApplicationRecord
-  
+  # To Track the user with lesson in terms of viewed or not and impressions count
   belongs_to :user
   belongs_to :lesson
   
