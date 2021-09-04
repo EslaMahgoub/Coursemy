@@ -13,7 +13,25 @@
 - @activities.each do |activity|
   %ul.list-group
     %li.list-group-item 
-      = activity.id
-      = link_to activity.trackable, activity.trackable
-      = activity.owner
+      = activity.created_at.strftime("%d/%b/%Y - %H:%M") 
+      (#{time_ago_in_words(activity.created_at)}) 
+      = activity.trackable_type
+      // dynamic icon based on model
+      = model_label(activity.trackable_type)
+      // to solve nested resources activity error
+      - if activity.trackable_type == 'Lesson'
+        - if Lesson.where(id: activity.trackable_id).present?
+          = link_to activity.trackable, course_lesson_path(activity.trackable.course, activity.trackable)
+        - else
+          Lesson Was Deleted
+      - else
+        = link_to activity.trackable, activity.trackable
       = activity.key
+      // dynamic icon based on crud method
+      = crud_label(activity.key.match(/\.(.*)/)[1])
+      by
+      = link_to activity.owner, user_path(activity.owner)
+      - if activity.parameters.any?
+        = activity.parameters
+      
+!= pagy_bootstrap_nav(@pagy)
