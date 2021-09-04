@@ -18,9 +18,12 @@
   border-radius: .3rem;
 }
 // solve the problem of shady text inside of btn-primary, btn-danger
-.btn-primary, .btn-danger, .btn-success{
+.btn-primary, .btn-danger, .btn-success, .btn-info{
   color:#ffffff !important; 
 }
 // remove confirmation icons within the form field
 .form-control.is-invalid{ background-image: none;} // 
 .form-control.is-valid{ background-image: none;}
+
+// placeholder for jquery drag and drop
+.ui-state-highlight { height: 3em; line-height: 1.2em; background-color: green; }
