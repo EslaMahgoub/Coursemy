@@ -11,6 +11,16 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: .3rem;
+}
+// solve the problem of shady text inside of btn-primary, btn-danger
+.btn-primary, .btn-danger{
+  color:#ffffff !important; 
+}
 // remove confirmation icons within the form field
 .form-control.is-invalid{ background-image: none;} // 
 .form-control.is-valid{ background-image: none;}

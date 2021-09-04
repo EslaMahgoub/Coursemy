@@ -8,13 +8,41 @@
 %p
 
 .row
-  .col-lg-6
-    = render 'courses/course', course: @course
-  .col-lg-6
-    // pass course id to the new lesson created by default
-    - if policy(@course).owner?
-      = link_to "Add New Lesson", new_course_lesson_path(@course, @lesson), class: "btn btn-sm btn-warning d-grid gap-2" 
-      %p
-    - @lessons.each do |lesson|
-      = render 'lessons/lesson', lesson: lesson
-      %p
+  // for browser resize
+  .col-lg-8.order-1.order-lg-1 
+    .jumbotron
+      %h3
+        = @course.title
+      .p-3
+      .row
+      .fas.fa-clock
+      = @course.updated_at.strftime("%d/%b/%Y")
+      .row
+      .fas.fa-globe-europe
+      = @course.language
+      .fas.fa-signal
+      = @course.level
+      %hr
+      = @course.description
+    %h4
+      .fas.fa-tasks
+      = pluralize(@course.lessons_count, 'Lesson') + " :"
+      .float-end
+        .fas.fa-spinner
+        = number_to_percentage(@course.progress(current_user), precision: 0)
+      
+    %ul.list-group
+      - @lessons.each do |lesson|
+        %li.list-group-item
+          = render 'lessons/lesson_preview', lesson: lesson
+    %p
+    %h4
+      .far.fa-comment 
+      = pluralize(@enrollments_with_reviews.count, 'Review')
+      /= @course.enrollments_count -> this show all the enrollments even if there is no review so using @enrollments_with_reviews is the right choice
+    - @enrollments_with_reviews.each do |enrollment|
+      = render 'enrollments/enrollment', enrollment: enrollment
+      
+  .col-lg-4.order-0.order-lg-1
+    .sticky-top
+      = render 'courses/course', course: @course

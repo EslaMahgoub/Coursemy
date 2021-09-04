@@ -14,7 +14,22 @@
 = link_to @lesson.title, course_lesson_path(@course, @lesson)
 %p
 
-= render "lessons/lesson", lesson: @lesson
-
-%p
-= link_to 'Back to course', course_path(@lesson.course), class: "btn btn-sm btn-warning"
+.row
+  .col-lg-8
+    = render "lessons/lesson", lesson: @lesson
+  .col-lg-4
+    %ul.list-group
+      %li.list-group-item
+        .fas.fa-graduation-cap
+        = link_to @lesson.course.title, course_path(@lesson.course) 
+        .row
+        Progress: 
+        .fas.fa-spinner
+        = number_to_percentage(@course.progress(current_user), precision: 0)
+      - @lessons.each do |lesson|
+        - if @lesson.present? && lesson == @lesson
+          %li.list-group-item.list-group-item-primary
+            = render 'lessons/lesson_preview', lesson: lesson
+        - else 
+          %li.list-group-item
+            = render 'lessons/lesson_preview', lesson: lesson
