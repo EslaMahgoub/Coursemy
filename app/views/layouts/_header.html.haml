@@ -78,6 +78,11 @@
                   %b Enrollments
                   .badge.bg-info
                     = Enrollment.count
+                = link_to unapproved_courses_path, class: "dropdown-item #{'active fw-bold' if current_page?(unapproved_courses_path)}" do
+                  .fa.fa-graduation-cap
+                  %b Unapproved Courses
+                  .badge.bg-info
+                    = Course.unapproved.count
                 = link_to activity_path, class: "dropdown-item #{'active fw-bold' if current_page?(activity_path)}" do
                   .fa.fa-bell
                   %b Activity

@@ -37,13 +37,30 @@
         .far.fa-clock
         = course.created_at.strftime('%d-%b-%Y')
         
-  - if current_user && policy(course).edit?
-    .card-footer
-      %p
-      - if policy(course).owner?
-        = link_to "Add New Lesson", new_course_lesson_path(course, @lesson), class: "btn btn-sm btn-primary" 
-        = link_to 'Show', course, class: 'btn btn-sm btn-primary '
-        // if policy(course).edit?
+  - if current_user
+    - if policy(course).edit?
+      .card-footer
+        %p
+        - if policy(course).owner?
+          = link_to "Add New Lesson", new_course_lesson_path(course, @lesson), class: "btn btn-sm btn-primary" 
+          // if policy(course).edit?
         = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' 
         // if policy(course).destroy?
         = link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' 
+    - if policy(course).destroy?
+      .card-footer
+        -if course.published?
+          .badge.bg-success Published
+        - else
+          .badge.bg-danger UnPublished
+        -if course.approved?
+          .badge.bg-success Approved
+        - else
+          .badge.bg-danger UnApproved
+    - if policy(course).approve?
+      .card-footer
+        -if course.approved?
+          = link_to "Unapprove", unapprove_course_path(course), method: :patch, class: "btn btn-sm btn-danger"
+        - else
+          = link_to "Approve", approve_course_path(course), method: :patch, class: "btn btn-sm btn-success"
+      

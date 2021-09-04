@@ -1,11 +1,12 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_course, only: [ :show, :edit, :update, :destroy, :approve, :unapprove]
 
   # GET /courses or /courses.json
+  #ransack_path is used to redirect to each ransck path after finishing the search instead of redirecting to the index path
   def index
     @ransack_path = courses_path
     
-    @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
+    @ransack_courses = Course.published.approved.ransack(params[:courses_search], search_key: :courses_search)
     #@courses = @ransack_courses.result.includes(:user)
     
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
@@ -31,6 +32,25 @@ class CoursesController < ApplicationController
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
     render 'index'
   end 
+  
+  def unapproved 
+    @ransack_path = unapproved_courses_path
+    @ransack_courses = Course.unapproved.ransack(params[:courses_search], search_key: :courses_search)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    render 'index'
+  end 
+  
+  def approve
+    authorize @course, :approve?
+    @course.update_attribute(:approved, true)
+    redirect_to @course, notice: "Course is successfully approved and visible."
+  end
+  
+  def unapprove
+    authorize @course, :approve?
+    @course.update_attribute(:approved, false)
+    redirect_to @course, notice: "Course is unapproved and invisible."
+  end
   
   def show
     @lessons = @course.lessons
@@ -95,6 +115,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price)
+      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published)
     end
 end

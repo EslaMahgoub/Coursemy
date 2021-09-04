@@ -24,6 +24,10 @@ class Course < ApplicationRecord
   scope :latest_courses, -> { limit(3).order(created_at: :desc) } 
   scope :popular_courses, -> { limit(3).order(enrollments_count: :desc, created_at: :desc) }
   scope :top_rated_courses, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
+  scope :approved, -> { where(approved: true) }
+  scope :unapproved, -> { where(approved: false) }
   
   has_rich_text :description
   extend FriendlyId
