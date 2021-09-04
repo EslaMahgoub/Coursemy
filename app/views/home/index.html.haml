@@ -55,14 +55,16 @@
     .row
     Learn at your own pace
 
-
-%hr
-%h4
-  .fas.fa-user-graduate
-  Continue Learning
-.grid-container
-  - @purchased_courses.each do |course|
-    = render 'courses/course', course: course
+- if current_user
+  %hr
+  %h4
+    .fas.fa-user-graduate
+    Continue Learning
+  .grid-container
+    - @purchased_courses.each do |course|
+      = render 'courses/course', course: course
+  .text-end
+    = link_to "Check All Your Courses", purchased_courses_path
 %hr
 %h4
   .fas.fa-chart-line
@@ -70,6 +72,8 @@
 .grid-container
   - @popular_courses.each do |course|
     = render 'courses/course', course: course
+.text-end
+  = link_to "More Popular Courses", courses_path(courses_search: {s: 'enrollments_count desc'})
 %hr
 %h4
   .fas.fa-star
@@ -77,6 +81,8 @@
 .grid-container
   - @top_rated_courses.each do |course|
     = render 'courses/course', course: course
+.text-end
+  = link_to "Best Rated Courses", courses_path(courses_search: {s: 'average_rating desc'})
 %hr
 %h4
   .fas.fa-clock
@@ -84,11 +90,13 @@
 .grid-container
   - @latest_courses.each do |course|
     = render 'courses/course', course: course
+.text-end
+  = link_to "Check All Latest Courses", courses_path(courses_search: {s: 'created_at desc'})
       
 %hr
 %h4
   .fas.fa-comment
-  What is our studnet saying
+  What are our student saying?
 .grid-container
   - @latest_good_reviews.each do |enrollment|
     = render 'enrollments/enrollment', enrollment: enrollment

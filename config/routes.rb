@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     member do 
       # Add two new actions to our routes
+      get :analytics
       patch :approve
       patch :unapprove
     end

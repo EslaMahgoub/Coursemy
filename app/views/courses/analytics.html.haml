@@ -1,0 +1,29 @@
+- content_for :title do
+  Coursemy
+  \|
+  = @course.title 
+  \| 
+  Analytics
+= link_to 'Courses', courses_path
+\|
+= link_to @course.title, course_path(@course)
+\|
+Analytics 
+.text-center
+  %h3
+    .fas.fa-chart-line
+    Analytics For
+    = @course.title
+    
+%h3
+Enrollments Per Day, Quantity
+= line_chart @course.enrollments.group_by_day(:created_at).count
+
+Enrollments Per Day, Revenue
+= line_chart @course.enrollments.group_by_day(:created_at).sum(:price)
+
+Impressions Per Lesson, (How many nique users lessons have viewed)
+= bar_chart @course.user_lessons.joins(:lesson).group(:'lessons.title').count
+
+Impressions Per Lesson, (How many Times lessons have viewed)
+= bar_chart @course.user_lessons.joins(:lesson).group(:'lessons.title').sum(:impressions)

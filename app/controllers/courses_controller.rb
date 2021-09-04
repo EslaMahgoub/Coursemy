@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [ :show, :edit, :update, :destroy, :approve, :unapprove]
-
+  before_action :set_course, only: [ :show, :edit, :update, :destroy, :approve, :unapprove, :analytics]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  
   # GET /courses or /courses.json
   #ransack_path is used to redirect to each ransck path after finishing the search instead of redirecting to the index path
   def index
@@ -50,6 +51,10 @@ class CoursesController < ApplicationController
     authorize @course, :approve?
     @course.update_attribute(:approved, false)
     redirect_to @course, notice: "Course is unapproved and invisible."
+  end
+  
+  def analytics
+    authorize @course, :owner?
   end
   
   def show
