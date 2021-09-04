@@ -5,6 +5,13 @@ class CoursePolicy < ApplicationPolicy
     end
   end
   
+  def show?
+    # Allow user to see the course if it is published and apporved or the user is an admin, or the user who created the course or the user has bought the course
+    @record.published && record.approved ||
+    @user.present? && @user.has_role?(:admin) ||
+    @record.user_id == @user.id ||
+    @record.bought(@user)
+  end
   
   def edit?
     @record.user_id == @user.id
