@@ -81,6 +81,9 @@
                 = link_to activity_path, class: "dropdown-item #{'active fw-bold' if current_page?(activity_path)}" do
                   .fa.fa-bell
                   %b Activity
+                = link_to analytics_path, class: "dropdown-item #{'active fw-bold' if current_page?(analytics_path)}" do
+                  .fa.fa-chart-bar
+                  %b Analytics
                   
               
         %ul.navbar-nav.ms-auto
