@@ -3,7 +3,7 @@ class Lesson < ApplicationRecord
   #Course.find_each { |course| Course.reset_counters(course.id, :lessons) } # counter cache for old records
   validates :title, :content, :course, presence: true
   
-  has_many :user_lessons
+  has_many :user_lessons, dependent: :destroy
   
   has_rich_text :content
   extend FriendlyId
