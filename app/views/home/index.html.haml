@@ -18,12 +18,23 @@
             %span.input-group-append
               %button.btn.btn-primary.btn-sm{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
-        // = form_tag(courses_path, method: :get) do
-        //   .input-group
-        //     = text_field_tag :title, params[:title], autocomplete: 'on', placeholder: "Search", class: 'form-control-sm'
-        //     %span.input-group-append
-        //       %button.btn.btn-primary.btn-sm{:type => "submit"}
-        //         %span.fa.fa-search{"aria-hidden" => "true"}
+    - else
+      %h3.text-shadow Join to access all the courses
+      .p-2
+      = link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg'
+      = link_to 'Login', new_user_session_path, class: 'btn btn-primary btn-lg'
+      .row.mt-1
+      = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'btn btn-danger btn-lg mr-1' do
+        Continue with
+        .fab.fa-google
+      .row.mt-1
+      = link_to user_github_omniauth_authorize_path, method: :post, class: 'btn btn-info btn-lg mr-1' do
+        Continue with
+        .fab.fa-github
+      .row.mt-1
+      = link_to user_facebook_omniauth_authorize_path, method: :post, class: 'btn btn-primary btn-lg mr-1' do
+        Continue with
+        .fab.fa-facebook
     %p
     
 .card-group

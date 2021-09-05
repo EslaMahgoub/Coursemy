@@ -105,11 +105,18 @@
       - else
         %ul.navbar-nav.ms-auto.mb-2.mb-lg-0
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_user_registration_path)}"}
-            = link_to 'Sign Up', new_user_registration_path, class: 'nav-link'
+            = link_to 'Register', new_user_registration_path, class: 'nav-link'
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_user_session_path)}"}
-            = link_to 'Log In', new_user_session_path, class: 'nav-link'
-      - unless current_user
-        = link_to user_google_oauth2_omniauth_authorize_path, method: :post do
-          .fab.fa-google
-          Sign in with Google
+            = link_to 'Login', new_user_session_path, class: 'nav-link'
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(user_google_oauth2_omniauth_authorize_path)}"}
+            = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'nav-link' do
+              .fab.fa-google
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(user_github_omniauth_authorize_path)}"}
+            = link_to user_github_omniauth_authorize_path, method: :post, class: 'nav-link' do
+              .fab.fa-github
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(user_facebook_omniauth_authorize_path)}"}
+            = link_to user_facebook_omniauth_authorize_path, method: :post, class: 'nav-link' do
+              .fab.fa-facebook
+          
       
+          
