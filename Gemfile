@@ -74,6 +74,7 @@ gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-facebook'
 gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
+gem "image_processing"
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
