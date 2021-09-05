@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
-  validates :title, :short_description, :language, :level, :price, presence: true
-  validates :description, presence: true, length: { :minimum => 5} 
+  validates :title, :description, :short_description, :language, :level, :price, :avatar, presence: true
+  validates :description, length: { :minimum => 5, :maximum => 3000} 
+  validates :short_description, length: { :maximum => 300}
   
   
   belongs_to :user, counter_cache: true
@@ -10,9 +11,13 @@ class Course < ApplicationRecord
   has_many :user_lessons, through: :lessons # get user_lessons related to lessons 
 
   has_one_attached :avatar
-  validates :avatar, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { less_than: 500.kilobytes , message: 'The file size must be less than 500 kilobytes'}
+  validates :avatar,
+  content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
+  size: { less_than: 500.kilobytes , message: 'The file size must be less than 500 kilobytes'}
   
-  validates :title, uniqueness: true
+  validates :title, uniqueness: true, length: { :maximum => 70}
+  
+  validates :price, numericality: { greater_than_or_equal_to:  0  }
   
   def to_s
     title

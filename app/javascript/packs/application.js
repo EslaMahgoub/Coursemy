@@ -17,7 +17,6 @@ import 'bootstrap/dist/css/bootstrap'
 import "stylesheets/application"
 import "@fortawesome/fontawesome-free/css/all"
 import "chartkick/chart.js"
-//import "../trix-editor-overrides"
 
 require('stylesheets/application.scss')
 require("trix")
@@ -25,6 +24,7 @@ require("@rails/actiontext")
 require("jquery") // yarn add jquery
 require("jquery-ui-dist/jquery-ui") // yarn add jquery-ui-dist 
 
+import "../trix-editor-overrides"
 // Jquery ui sorting
 $(document).on('turbolinks:load', function(){
   $('.lesson-sortable').sortable({
