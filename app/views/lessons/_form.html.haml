@@ -6,9 +6,15 @@
   .form-inputs
     = f.input :title
     = f.input :content, as: :rich_text_area
+    %p
     - if @lesson.video.attached?
       = @lesson.video.filename
+      - if policy(@lesson).edit?
+        = link_to "Remove Video And Thumbnail", delete_video_course_lesson_path(@course, @lesson),
+        method: :delete, data: { confirm: "Are you sure you want to delete this video?!"}
+    %p
     = f.input :video
+    %p
     - if @lesson.video_thumbnail.attached?
       = @lesson.video_thumbnail.filename
     = f.input :video_thumbnail

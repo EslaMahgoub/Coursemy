@@ -13,7 +13,10 @@ Rails.application.routes.draw do
       patch :unapprove
     end
     resources :lessons do
-      put :sort
+      put :sort 
+      member do
+        delete :delete_video
+      end
     end
     resources :enrollments, only: %i[ new create ]
   end
