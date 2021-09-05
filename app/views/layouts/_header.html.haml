@@ -108,3 +108,4 @@
             = link_to 'Sign Up', new_user_registration_path, class: 'nav-link'
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_user_session_path)}"}
             = link_to 'Log In', new_user_session_path, class: 'nav-link'
+      = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post
