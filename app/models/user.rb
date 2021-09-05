@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+         :omniauthable, omniauth_providers: [:google_oauth2, :github]
   
   rolify
   
@@ -13,11 +13,22 @@ class User < ApplicationRecord
 
     # Uncomment the section below if you want users to be created if they don't exist
     unless user
-        user = User.create(
-            email: data['email'],
-            password: Devise.friendly_token[0,20],
-            confirmed_at: Time.now
-        )
+      user = User.create(
+          email: data['email'],
+          password: Devise.friendly_token[0,20],
+          confirmed_at: Time.now
+      )
+    else
+      # get values from response from google (can be found in omniauth wiki)
+      user.name = access_token.info.name
+      user.image = access_token.info.image
+      user.provider = access_token.provider
+      user.uid = access_token.uid
+      user.token = access_token.credentials.token
+      user.expires_at = access_token.credentials.expires_at
+      user.expires = access_token.credentials.expires
+      user.refresh_token =access_token.credentials.refresh_token
+      user.save!
     end
     user
 end

@@ -3,3 +3,19 @@
   \|
   = @user.username
 = render 'users/user', user: @user
+
+%p
+= link_to user_google_oauth2_omniauth_authorize_path, method: :post do
+  .fab.fa-google
+  Sign in with Google
+.row
+= link_to user_github_omniauth_authorize_path, method: :post do
+  .fab.fa-github
+  Sign in with Github
+
+- if @user.uid.present?
+  .row
+  = @user.name
+  .row
+  = image_tag @user.image, size: "40x40", alt: "#{@user.email}", class: 'rounded-circle'
+  
