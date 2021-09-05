@@ -8,6 +8,9 @@ class Course < ApplicationRecord
   has_many :lessons, dependent: :destroy   #destroy lessons when course is destroyed
   has_many :enrollments, dependent: :restrict_with_error
   has_many :user_lessons, through: :lessons # get user_lessons related to lessons 
+
+  has_one_attached :avatar
+  validates :avatar, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { less_than: 500.kilobytes , message: 'The file size must be less than 500 kilobytes'}
   
   validates :title, uniqueness: true
   
