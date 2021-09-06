@@ -35,6 +35,9 @@
     Enrollments:
     = user.enrollments_count
   .card-footer
+    Comments Added:
+    = user.comments_count
+  .card-footer
     Confirmed Email?
     -if user.confirmed_at.present?
       .badge.bg-success Yes

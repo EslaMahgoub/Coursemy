@@ -1,0 +1,13 @@
+.card
+  .card-header
+    = comment.created_at.strftime("%d/%b/%Y, %H:%M")
+    (#{time_ago_in_words(comment.created_at)})
+    by
+    = link_to comment.user, user_path(comment.user)
+    = link_to 'Delete Comment', [@course, @lesson, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"
+  .card-body
+    = comment.content
+    
+  
+    
+    

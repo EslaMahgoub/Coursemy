@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_103027) do
+ActiveRecord::Schema.define(version: 2021_09_06_092845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 2021_09_05_103027) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "lesson_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_comments_on_lesson_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -125,6 +135,7 @@ ActiveRecord::Schema.define(version: 2021_09_05_103027) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.integer "row_order"
+    t.integer "comments_count", default: 0, null: false
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["slug"], name: "index_lessons_on_slug", unique: true
   end
@@ -177,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_09_05_103027) do
     t.string "refresh_token"
     t.string "image"
     t.string "name"
+    t.integer "comments_count", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -193,6 +205,8 @@ ActiveRecord::Schema.define(version: 2021_09_05_103027) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "lessons"
+  add_foreign_key "comments", "users"
   add_foreign_key "courses", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"

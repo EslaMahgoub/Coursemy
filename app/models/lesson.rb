@@ -13,6 +13,7 @@ class Lesson < ApplicationRecord
   # end
   
   has_many :user_lessons, dependent: :destroy
+  has_many :comments, dependent: :nullify
   
   has_one_attached :video
   has_one_attached :video_thumbnail
