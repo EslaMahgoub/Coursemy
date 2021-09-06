@@ -21,6 +21,10 @@ module ApplicationHelper
         "<i class='fas fa-graduation-cap'></i>".html_safe
       when 'Lesson'
         "<i class='fas fa-tasks'></i>".html_safe
+      when 'Enrollment'
+        "<i class='fas fa-lock-open'></i>".html_safe
+      when 'Comment'
+        "<i class='fas fa-comment'></i>".html_safe
     end
   end
   
