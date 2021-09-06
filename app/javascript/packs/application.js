@@ -27,6 +27,8 @@ require("jquery-ui-dist/jquery-ui") // yarn add jquery-ui-dist
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
 
+import "youtube"
+
 // import "../trix-editor-overrides"
 // Jquery ui sorting
 $(document).on('turbolinks:load', function(){
