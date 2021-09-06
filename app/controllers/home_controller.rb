@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :privacy_policy]
   def index
     # using scopes to move the logic to models instead of controllers
     @courses = Course.all.limit(3)

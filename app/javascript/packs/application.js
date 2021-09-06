@@ -21,7 +21,6 @@ import "chartkick/chart.js"
 require('stylesheets/application.scss')
 require("trix")
 require("@rails/actiontext")
-require("jquery") // yarn add jquery
 require("jquery-ui-dist/jquery-ui") // yarn add jquery-ui-dist 
 
 import videojs from 'video.js'
@@ -52,6 +51,11 @@ $(document).on('turbolinks:load', function(){
       console.log("stop called when finishing sort of cards");
     }
   });
+  
+  $("video").bind("contextmenu",function(){
+      return false;
+  });
+  
   let videoPlayer = videojs(document.getElementById('my-video'), {
     controls: true,
     playbackRates: [0.5, 1, 1.5],
