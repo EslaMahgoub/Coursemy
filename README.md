@@ -3,6 +3,9 @@
 ## Coursemy is an online learning platform for sharing knowledge and learning courses
 
 ## Check the link: https://coursemy.herokuapp.com/
+## You can navigate through the app using 
+#### user: eslamkhaledtawfik@hotmail.com 
+#### password: eslamkhaledtawfik@hotmail.com
 
 ## Technologies Used:
 ######  Ruby On Rails
