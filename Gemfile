@@ -76,8 +76,6 @@ gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
 gem "image_processing"
 gem "recaptcha"
-gem 'mailgun_rails'
-
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
