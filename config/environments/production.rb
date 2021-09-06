@@ -8,18 +8,17 @@ Rails.application.configure do
   # config.action_mailer.smtp_settings = {
   #   port: 587,
   #   address: 'email-smtp.us-east-1.amazonaws.com',
-  #   user_name: 'AKIA4RIH5JI64UXWVLXJ',
-  #   password: 'BMY8jwtUeWlXaCuc2ohWt9jIvWkGkG2is5IjiNOzzg9h',
+  #   user_name: Rails.application.credentials.dig(:aws_smtp, :user_name),
+  #   password: Rails.application.credentials.dig(:aws_smtp, :password),
   #   authentication: :plain,
   #   enable_starttls_auto: true
   # }
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'coursemy.herokuapp.com',
-    user_name:            'eslamkhaledtawfik@gmail.com',
-    password:             'hgfqnrmutpgvcuzk',
+    user_name:            Rails.application.credentials.dig(:gmail_smtp, :user_name),
+    password:             Rails.application.credentials.dig(:gmail_smtp, :password),
     authentication:       'plain',
     enable_starttls_auto: true }
   Rails.application.config.middleware.use ExceptionNotification::Rack,
