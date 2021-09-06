@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :enrollments do
     get :my_students, on: :collection
   end
-  devise_for :users, :controllers => {omniauth_callbacks: 'users/omniauth_callbacks'}
+  
+  devise_for :users, :controllers => {registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
+  
   resources :users, only: %i[ index edit show update ] # resources :users, must be after devise_for :users to prevent redirecting loops
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection

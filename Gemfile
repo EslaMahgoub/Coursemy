@@ -75,6 +75,7 @@ gem 'omniauth-facebook'
 gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
 gem "image_processing"
+gem "recaptcha"
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
