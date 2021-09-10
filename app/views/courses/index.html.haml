@@ -17,6 +17,10 @@
       = f.label :title
       = f.search_field :title_cont, placeholder: 'Title', class: "form-control form-control-sm"
       %p
+      = f.label :tag
+      // search tag_name through course_tags
+      = f.search_field :course_tags_tag_name_cont, placeholder: 'Tag', class: "form-control form-control-sm" 
+      %p
       = f.label :short_description
       = f.search_field :short_description_cont, placeholder: 'Short description', class: "form-control form-control-sm"
       %p
@@ -45,6 +49,13 @@
       = f.submit
     .ml-2
     = link_to 'refresh', @ransack_path
+    .row 
+      .col-md-2
+        - Tag.all.each do |tag|
+          = link_to courses_path(courses_search: {course_tags_tag_id_eq: tag.id}) do
+            .badge.bg-info
+              = tag.name
+              = tag.course_tags_count
     
   .col-md-10
     .grid-container
