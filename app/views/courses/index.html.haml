@@ -51,7 +51,7 @@
     = link_to 'refresh', @ransack_path
     .row 
       .col-md-2
-        - Tag.all.each do |tag|
+        - @tags.all.each do |tag|
           // controller: controller_name, action: action_name to return to same controller and action
           = link_to controller: controller_name, action: action_name, courses_search: {course_tags_tag_id_eq: tag.id} do
             .badge.bg-info

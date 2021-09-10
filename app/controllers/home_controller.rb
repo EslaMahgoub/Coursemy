@@ -10,6 +10,8 @@ class HomeController < ApplicationController
     @top_rated_courses = Course.top_rated_courses.published.approved
     @purchased_courses = Course.all.limit(3).joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc)
     
+    @popular_tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :desc).limit(10)
+    
   end
 
   def privacy_policy

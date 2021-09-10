@@ -93,6 +93,10 @@
                   .fa.fa-chart-bar
                   %b Analytics
                   
+                = link_to tags_path, class: "dropdown-item #{'active fw-bold' if current_page?(tags_path)}" do
+                  .fa.fa-tags
+                  %b Tags
+                  
               
         %ul.navbar-nav.ms-auto
           %li.nav-item.dropdown

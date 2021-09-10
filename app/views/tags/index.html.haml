@@ -1,0 +1,20 @@
+- content_for :title do
+  Coursemy
+  \|
+  = action_name.humanize
+
+%h3
+  .text-center
+    = action_name.humanize
+    Tags
+    .badge.bg-info
+      = @tags.count
+
+- @tags.each do |tag|
+  .row
+    .col-md-6
+      %h4
+        .badge.bg-info
+          = tag.name
+          = tag.course_tags_count
+        = link_to 'Delete Tag', tag, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'

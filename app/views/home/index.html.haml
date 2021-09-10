@@ -103,6 +103,16 @@
     = render 'courses/course', course: course
 .text-end
   = link_to "Check All Latest Courses", courses_path(courses_search: {s: 'created_at desc'})
+  
+%hr
+%h4 
+  .fas.fa-tags
+  Most Popular Tags
+- @popular_tags.each do |tag|
+  = link_to courses_path(courses_search: {course_tags_tag_id_eq: tag.id}) do
+    .badge.bg-info
+      = tag.name
+      = tag.course_tags_count
       
 %hr
 %h4
