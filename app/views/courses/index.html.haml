@@ -52,7 +52,8 @@
     .row 
       .col-md-2
         - Tag.all.each do |tag|
-          = link_to courses_path(courses_search: {course_tags_tag_id_eq: tag.id}) do
+          // controller: controller_name, action: action_name to return to same controller and action
+          = link_to controller: controller_name, action: action_name, courses_search: {course_tags_tag_id_eq: tag.id} do
             .badge.bg-info
               = tag.name
               = tag.course_tags_count
