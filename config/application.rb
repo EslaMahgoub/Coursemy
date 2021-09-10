@@ -10,6 +10,8 @@ module RubyOnRails
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.assets.initialize_on_precompile = false
+
     if Rails.env.development? #for rails-erd gem to generate a diagram
       def eager_load!
         Zeitwerk::Loader.eager_load_all
