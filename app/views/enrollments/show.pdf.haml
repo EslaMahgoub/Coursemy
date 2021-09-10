@@ -1,0 +1,29 @@
+%center
+  %h1 
+    Certificate of Course Completion
+
+%p
+%center
+  This is to certify that the user:
+  %b
+    = @enrollment.user.email
+  has successfully completed the course
+  %b
+    = @enrollment.course.title
+  on the Coursemy.com platform
+
+%p
+
+%b Certificate id: 
+#{@enrollment.slug}
+
+%p
+
+%b Certificate url: 
+#{request.base_url}#{request.original_fullpath}
+
+%center
+  %h3
+    = image_tag wicked_pdf_asset_base64('logo.jpg'), height: "30", width: "auto"
+    %p
+    www.Coursemy.com 

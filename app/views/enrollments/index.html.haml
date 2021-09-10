@@ -51,6 +51,7 @@
         %th
           Progress
         %th
+          Certificate
         %th
         %th
   
@@ -68,6 +69,7 @@
           %td= enrollment.rating
           %td= enrollment.review
           %td= number_to_percentage(enrollment.course.progress(enrollment.user), precision: 0)
+          %td= link_to 'Certificate', certificate_enrollment_path(enrollment, format: :pdf)
           %td= link_to 'See Review', enrollment
           %td
             - if policy(enrollment).edit?

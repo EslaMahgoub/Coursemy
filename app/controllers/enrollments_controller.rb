@@ -1,5 +1,6 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[certificate]  # to allow it available for the user that completed the course to use it anywhere
+  before_action :set_enrollment, only: %i[ show edit update destroy certificate]
   before_action :set_course, only: %i[ new create ]
   # GET /enrollments or /enrollments.json
   def index
@@ -17,6 +18,17 @@ class EnrollmentsController < ApplicationController
     render 'index'
   end 
 
+
+  def certificate
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
+        page_size: 'A4',
+        template: "enrollments/show.pdf.haml"
+      end
+    end
+  end
   # GET /enrollments/1 or /enrollments/1.json
   def show
   end

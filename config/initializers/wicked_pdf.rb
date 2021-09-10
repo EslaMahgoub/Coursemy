@@ -24,4 +24,10 @@ WickedPdf.config = {
   # 'xvfb-run' command, in order to simulate an X server.
   #
   # use_xvfb: true,
+  
+  layout: "pdf.html.haml",
+  orientation: "Landscape",
+  lowquality: true,
+  zoom: 1,
+  dpi: 75
 }
