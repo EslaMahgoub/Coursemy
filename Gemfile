@@ -76,6 +76,10 @@ gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
 gem "image_processing"
 gem "recaptcha"
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
