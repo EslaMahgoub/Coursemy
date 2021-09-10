@@ -48,3 +48,14 @@
   .col-lg-4.order-0.order-lg-1
     .sticky-top
       = render 'courses/course', course: @course
+      
+%h4
+%hr
+  Similar Courses
+- Course.all.where.not(id: @course.id).each do |course|
+  .row
+  // Return all courses with the same tag as the current opened course 
+  - unless @course.tags.pluck(:id).intersection(course.tags.pluck(:id)).count.zero?
+    .grid-container
+      = render 'courses/course', course: course
+      
