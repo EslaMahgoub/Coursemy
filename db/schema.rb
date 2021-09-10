@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_06_103355) do
+ActiveRecord::Schema.define(version: 2021_09_10_120305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 2021_09_06_103355) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "course_tags", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_tags_on_course_id"
+    t.index ["tag_id"], name: "index_course_tags_on_tag_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -100,6 +109,13 @@ ActiveRecord::Schema.define(version: 2021_09_06_103355) do
     t.boolean "approved", default: false
     t.index ["slug"], name: "index_courses_on_slug", unique: true
     t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "create_tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "course_tags_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -149,6 +165,13 @@ ActiveRecord::Schema.define(version: 2021_09_06_103355) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "course_tags_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_lessons", force: :cascade do |t|
@@ -209,6 +232,8 @@ ActiveRecord::Schema.define(version: 2021_09_06_103355) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "lessons"
   add_foreign_key "comments", "users"
+  add_foreign_key "course_tags", "courses"
+  add_foreign_key "course_tags", "tags"
   add_foreign_key "courses", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"

@@ -6,6 +6,10 @@
   .form-inputs
     = f.input :title
     %p
+    
+    = f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
+    
+    %p
     .row
     - if @course.avatar.attached?
       = image_tag @course.avatar, width: "200px"

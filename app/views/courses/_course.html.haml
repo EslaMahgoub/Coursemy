@@ -40,6 +40,12 @@
       .col-md-6
         .far.fa-clock
         = course.created_at.strftime('%d-%b-%Y')
+  
+  - if course.tags.present?
+    .card-footer
+      - course.tags.each do |tag|
+        .badge.bg-info
+          = tag.name 
         
   - if current_user
     - if policy(course).owner?
