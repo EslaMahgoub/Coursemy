@@ -7,7 +7,7 @@
     = f.input :title
     %p
     
-    = f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
+    = f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" }
     
     %p
     .row
