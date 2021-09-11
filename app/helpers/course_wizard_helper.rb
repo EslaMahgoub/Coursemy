@@ -1,2 +1,2 @@
-module CourseCreatorHelper
+module CourseWizardHelper
 end
