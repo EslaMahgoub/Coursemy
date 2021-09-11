@@ -12,6 +12,7 @@
     "bootstrap": "^5.1.0",
     "chart.js": "^3.5.1",
     "chartkick": "^4.0.5",
+    "glob-parent": "^6.0.1",
     "jquery": "^3.4.1",
     "jquery-ui-dist": "^1.12.1",
     "popper.js": "^1.16.1",

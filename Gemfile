@@ -77,7 +77,8 @@ gem 'active_storage_validations'
 gem "image_processing"
 gem "recaptcha"
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', group: :development
+gem 'wkhtmltopdf-heroku', group: :production
 
 
 
