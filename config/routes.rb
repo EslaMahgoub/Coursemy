@@ -26,7 +26,11 @@ Rails.application.routes.draw do
     end
     resources :enrollments, only: %i[ new create ]
   end
+  resources :course_creator
+  
   resources :youtube, only: :show
+  
+  
   get 'home/index'
   get "activity", to: "home#activity"
   get "analytics", to: "home#analytics"

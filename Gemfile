@@ -76,9 +76,11 @@ gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
 gem "image_processing"
 gem "recaptcha"
-gem 'wicked_pdf'
+gem 'wicked_pdf' #PDF for ruby on rails
 gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
+gem 'wicked' #Creating multistep forms
+
 
 
 
