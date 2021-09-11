@@ -22,6 +22,12 @@ class EnrollmentPolicy < ApplicationPolicy
     @user.has_role?(:admin)
   end
   
+  def certificate?
+    # allow generating certificate only if the user completed all the lessons
+    # the course has number of lessons as the number that the user has viewed for this course
+    @record.course.lessons_count == @record.course.user_lessons.where(user: @record.user).count
+  end
+  
   
   
 end

@@ -13,12 +13,24 @@
       %p
       %h2
         This is to certify that the user:
+        %br
+        %br
         %b
+        %u
           = @enrollment.user.email
-        has successfully completed the course
+        %br
+        %br
         %b
+        has successfully completed the course:
+        %br
+        %br
+        %b
+        %u
           = @enrollment.course.title
-        on the Coursemy.com platform
+        %br
+        %br
+        %b
+        on the Coursemy platform
       
       %p
       %br
@@ -31,8 +43,6 @@
       
       %b Certificate url: 
       #{request.base_url}#{request.original_fullpath}
-      %br
-      %br
       %br
       %br
       %br

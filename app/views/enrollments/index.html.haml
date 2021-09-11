@@ -61,7 +61,7 @@
           %td= enrollment.id
           %td= link_to enrollment.user, user_path(enrollment.user)
           %td= enrollment.created_at.strftime("%d/%b/%Y - %H:%m")
-          %td= link_to enrollment.course, user_path(enrollment.course) 
+          %td= link_to enrollment.course, course_path(enrollment.course) 
           %td= number_to_currency(enrollment.price)
           %td
             - if enrollment.rating.present?

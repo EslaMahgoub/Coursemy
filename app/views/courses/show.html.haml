@@ -28,8 +28,9 @@
       .fas.fa-tasks
       = pluralize(@course.lessons_count, 'Lesson') + " :"
       .float-end
-        .fas.fa-spinner
-        = number_to_percentage(@course.progress(current_user), precision: 0)
+        - unless @course.lessons_count.zero?
+          .fas.fa-spinner
+          = number_to_percentage(@course.progress(current_user), precision: 0)
       
     .list-group.lesson-sortable
       - @lessons.each do |lesson|
