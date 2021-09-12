@@ -6,6 +6,10 @@
   = link_to course_lesson_path(@course, lesson) do
     = lesson.row_order_rank + 1 
     = lesson.title
+    
+- else
+  = lesson.row_order_rank + 1 
+  = lesson.title
      
 .float-end
   .fa.fa-comment
@@ -20,3 +24,4 @@
     = lesson.user_lessons_count
     = link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "btn btn-sm btn-warning"
     = link_to 'Destroy', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"
+

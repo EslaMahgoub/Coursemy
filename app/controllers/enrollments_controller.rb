@@ -59,9 +59,10 @@ class EnrollmentsController < ApplicationController
         currency:    'usd'
       )
     end
-    
     @enrollment = current_user.buy_course(@course)
     redirect_to course_path(@course), notice: "You Have successfully enrolled in this course"
+    # Tell the EnrollmentMailer to send an enrollment email 
+    EnrollmentMailer.new_enrollment(@enrollment).deliver_later
     
     rescue Stripe::CardError => e
     flash[:error] = e.message

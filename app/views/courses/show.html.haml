@@ -31,12 +31,18 @@
         - unless @course.lessons_count.zero?
           .fas.fa-spinner
           = number_to_percentage(@course.progress(current_user), precision: 0)
-          = certificate_button(@course)      
-    .list-group.lesson-sortable
-      - @lessons.each do |lesson|
-        = content_tag "div", id: "lesson-#{lesson.id}", data: { model_name: lesson.class.name.underscore, update_url: course_lesson_sort_path(@course, lesson)} do
-          .list-group-item
-            .fa.fa-sort.all-scroll{:style => "cursor: grab;"}
+          = certificate_button(@course)    
+    - if @course.user == current_user
+      .list-group.lesson-sortable
+        - @lessons.each do |lesson|
+          = content_tag "div", id: "lesson-#{lesson.id}", data: { model_name: lesson.class.name.underscore, update_url: course_lesson_sort_path(@course, lesson)} do
+            .list-group-item
+              .fa.fa-sort.all-scroll{:style => "cursor: grab;"}
+              = render 'lessons/lesson_preview', lesson: lesson
+    - elsif policy(@course).show?
+      .list-group.shadow
+        - @lessons.each do |lesson|
+          .list-group-item.list-group-item-secondary
             = render 'lessons/lesson_preview', lesson: lesson
     %p
     %h4
