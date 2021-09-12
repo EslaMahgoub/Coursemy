@@ -1,3 +1,13 @@
+- content_for :title do
+  Coursemy
+  \|
+  Edit
+  = @course.title
+= link_to 'Courses', courses_path
+\/
+= link_to @course.title, course_path(@course)
+\|
+= link_to "Edit", course_course_wizard_path(@course, :basic_info)
 .card 
   .progress
     .progress-bar{style: "width: #{@progress}%"}
@@ -17,9 +27,8 @@
       = f.button :submit
   .card-footer
     .float-start
-      = link_to previous_wizard_path, class: "btn btn-sm btn-info" do
-        .fa.fa-arrow-left
-        Back
+      = link_to course_path(@course), class: "btn btn-sm btn-secondary" do
+        Cancel
   
     .float-end
       = link_to next_wizard_path, class: "btn btn-sm btn-info" do
