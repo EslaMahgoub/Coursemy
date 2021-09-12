@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
   resources :users, only: %i[ index edit show update ] # resources :users, must be after devise_for :users to prevent redirecting loops
   resources :tags, only: %i[create index destroy]
-  resources :courses do
+  resources :courses, except: [:edit] do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     member do 
       # Add two new actions to our routes

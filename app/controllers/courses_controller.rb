@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [ :show, :edit, :update, :destroy, :approve, :unapprove, :analytics]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_course, only: %i[ show destroy approve unapprove analytics]  #:edit, :update
+  skip_before_action :authenticate_user!, only: %i[index show]
   
   # GET /courses or /courses.json
   #ransack_path is used to redirect to each ransck path after finishing the search instead of redirecting to the index path
@@ -74,10 +74,11 @@ class CoursesController < ApplicationController
     @tags = Tag.all
   end
 
-  def edit
-    authorize @course
-    @tags = Tag.all
-  end
+  # Edit only from course wizard
+  # def edit
+  #   authorize @course
+  #   @tags = Tag.all
+  # end
 
   def create
     @course = Course.new(course_params)
@@ -97,19 +98,20 @@ class CoursesController < ApplicationController
     end
   end
 
-  def update
-    authorize @course
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to @course, notice: "Course was successfully updated." }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        @tags = Tag.all
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # Update only from course wizard
+  # def update
+  #   authorize @course
+  #   respond_to do |format|
+  #     if @course.update(course_params)
+  #       format.html { redirect_to @course, notice: "Course was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @course }
+  #     else
+  #       @tags = Tag.all
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @course.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   def destroy
     authorize @course
