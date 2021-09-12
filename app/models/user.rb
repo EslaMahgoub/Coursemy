@@ -48,6 +48,10 @@ end
   extend FriendlyId
   friendly_id :email, use: :slugged   # use email as slug
   
+  after_create do 
+    UserMailer.new_user(self).deliver_later
+  end 
+  
   after_create :assign_default_role
 
   def assign_default_role
