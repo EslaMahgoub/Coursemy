@@ -63,6 +63,8 @@ class EnrollmentsController < ApplicationController
     redirect_to course_path(@course), notice: "You Have successfully enrolled in this course"
     # Tell the EnrollmentMailer to send an enrollment email 
     EnrollmentMailer.new_enrollment(@enrollment).deliver_later
+    EnrollmentMailer.teacher_enrollment(@enrollment).deliver_later
+    
     
     rescue Stripe::CardError => e
     flash[:error] = e.message
