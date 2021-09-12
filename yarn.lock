@@ -1859,6 +1859,13 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
+cocoon-js@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/cocoon-js/-/cocoon-js-0.0.5.tgz#2d269db2e3375014dbc43e4dda3bdd8d161b238b"
+  integrity sha512-1h51/2LDnZdyQehtIIA4eqCMSef4yFvUwXQF1XWRp12KSVLCXrvuGOsnoEm7OXviM7wgEiTf1nAkjbyws9i1EQ==
+  dependencies:
+    jquery "^3.2.1"
+
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/collection-visit/-/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -3416,6 +3423,11 @@ jquery-ui-dist@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui-dist/-/jquery-ui-dist-1.12.1.tgz#5c0815d3cc6f90ff5faaf5b268a6e23b4ca904fa"
   integrity sha1-XAgV08xvkP9fqvWyaKbiO0ypBPo=
+
+jquery@^3.2.1:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
 
 jquery@^3.4.1:
   version "3.4.1"

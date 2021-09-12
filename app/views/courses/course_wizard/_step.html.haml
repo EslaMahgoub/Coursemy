@@ -7,9 +7,9 @@
 \/
 = link_to @course.title, course_path(@course)
 \|
-= link_to course_course_wizard_path(@course, :details) do
-  Edit
-  = step.to_s.humanize
+// = link_to course_course_wizard_path(@course, :details) do
+Edit
+= step.to_s.humanize
 
 .card 
   .progress-bar{style: "width: #{@progress}%"}= number_to_percentage(@progress, precision: 0)

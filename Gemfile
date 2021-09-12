@@ -81,7 +81,7 @@ gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
 gem 'wicked' #Creating multistep forms
 gem 'stripe' #For payments
-
+gem "cocoon"
 
 
 

@@ -6,11 +6,13 @@ class Course < ApplicationRecord
   
   belongs_to :user, counter_cache: true
   #User.find_each { |user| User.reset_counters(user.id, :courses) }  counter cache for old records
-  has_many :lessons, dependent: :destroy   #destroy lessons when course is destroyed
+  has_many :lessons, dependent: :destroy, inverse_of: :course   #destroy lessons when course is destroyed
   has_many :enrollments, dependent: :restrict_with_error
   has_many :user_lessons, through: :lessons # get user_lessons related to lessons 
   has_many :course_tags, inverse_of: :course, dependent: :destroy
   has_many :tags, through: :course_tags 
+  
+  accepts_nested_attributes_for :lessons, reject_if: :all_blank, allow_destroy: true
   
   has_one_attached :avatar
   validates :avatar, presence: true, on: :update
