@@ -179,6 +179,10 @@ GEM
     jmespath (1.4.0)
     json (2.5.1)
     jwt (2.2.3)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -387,6 +391,7 @@ DEPENDENCIES
   haml-rails (~> 2.0)
   image_processing
   jbuilder (~> 2.7)
+  letter_opener
   listen (~> 3.3)
   omniauth-facebook
   omniauth-github!
