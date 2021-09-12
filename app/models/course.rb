@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-  validates :title, :description, :short_description, :language, :level, :price, :avatar, presence: true
+  validates :title, :description, :short_description, :language, :level, :price, presence: true
   validates :description, length: { :minimum => 5, :maximum => 3000} 
   validates :short_description, length: { :maximum => 300}
   
@@ -13,6 +13,7 @@ class Course < ApplicationRecord
   has_many :tags, through: :course_tags 
   
   has_one_attached :avatar
+  validates :avatar, presence: true, on: :update
   validates :avatar,
   content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
   size: { less_than: 500.kilobytes , message: 'The file size must be less than 500 kilobytes'}

@@ -83,12 +83,14 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     authorize @course
+    @course.description = "Curriculum Description"
+    @course.short_description = "Short Description"
     @course.user = current_user
     @tags = Tag.all
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: "Course was successfully created." }
+        format.html { redirect_to course_course_wizard_index_path(@course), notice: "Course was successfully created." }
         format.json { render :show, status: :created, location: @course }
       else
         @tags = Tag.all

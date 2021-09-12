@@ -12,8 +12,13 @@
   = step.to_s.humanize
 
 .card 
+  .progress-bar{style: "width: #{@progress}%"}= number_to_percentage(@progress, precision: 0)
   .progress
-    .progress-bar{style: "width: #{@progress}%"}
+    - wizard_steps.each do |s|
+      - @color = current_page?(course_course_wizard_path(@course, s)) ? "bg-success" : "bg-secondary"
+      = link_to course_course_wizard_path(@course, s), class: "progress-bar #{@color}", style: "width: #{@progress}%" do
+        = wizard_steps.index(s) + 1
+        = s.to_s.humanize
   .card-header
     %h5
       = wizard_steps.index(step) + 1
@@ -22,6 +27,12 @@
       = step.to_s.humanize
       
   .card-body
+    // to show the error of one page in all pages
+    - if @course.errors.any?
+      .container.text-danger
+        - @course.errors.full_messages.each do |msg|
+          %li= msg
+      %p
     = yield
   .card-footer
     .float-start
