@@ -35,6 +35,14 @@ class Enrollment < ApplicationRecord
     end
   end
   
+  after_create :calculate_balance
+  after_destroy :calculate_balance
+  
+  def calculate_balance
+    course.calculate_income
+    user.calculate_enrollment_expenses
+  end
+  
   protected
   def cant_subscribe_to_own_course
     if self.new_record? #when creating a new enrollment check for the user_id

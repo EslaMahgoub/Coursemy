@@ -3,7 +3,6 @@
     = f.input :language, collection: Course.languages, include_blank: true
     = f.input :level, collection: Course.levels, include_blank: true
     = f.input :price
-    = f.input :published
     %p
     = f.label :tags
     = f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" }

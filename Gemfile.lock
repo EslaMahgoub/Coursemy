@@ -329,6 +329,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.38.0)
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
@@ -405,6 +406,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   spring
+  stripe
   turbolinks (~> 5)
   web-console (>= 4.1.0)
   webdrivers

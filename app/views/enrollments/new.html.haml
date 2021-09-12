@@ -10,9 +10,22 @@
       = link_to @course.title, course_path(@course)
       %hr
       .fas.fa-lock-open
-      Buy Course
+      Buy Course:
+      = number_to_currency(@course.price)
   .card-body
-    = form_tag course_enrollments_path(@course) do
-      = submit_tag "Pay #{number_to_currency(@course.price)}", class: "btn btn-lg btn-success"
+    - if @course.price > 0
+      = form_tag course_enrollments_path(@course) do
+        // = submit_tag "Pay #{number_to_currency(@course.price)}", class: "btn btn-lg btn-success"
+        %script.stripe-button{"data-amount" => "#{(@course.price * 100).to_i}",
+                              "data-description" => "#{@course.title} (#{number_to_currency @course.price})",
+                              "data-email" => "#{current_user.email}",
+                              "data-key" => "pk_test_51JYqTnIEBj5WhntAyZY0Nj332KEvXTspTCWpdmAlhrM2LaJVawa2Gw4TKiaX1hrO0DoGUYiqrKWl5oukcTfbVAqD00b7XGohBf",
+                              "data-locale" => "auto",
+                              :src => "https://checkout.stripe.com/checkout.js"}
+                              
+    - else
+      = form_tag course_enrollments_path(@course) do
+        = submit_tag "Enroll For Free", class: "btn btn-lg btn-success"
+      
   .card-footer
     = link_to 'Back', course_path(@course), class: "btn btn-warning"

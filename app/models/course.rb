@@ -26,12 +26,6 @@ class Course < ApplicationRecord
     title
   end
   
-  def progress(user)
-    unless self.lessons.count == 0 #if self.lessons.count != 0
-      user_lessons.where(user: user).count / self.lessons.count.to_f * 100
-    end
-  end
-  
   scope :latest_courses, -> { limit(3).order(created_at: :desc) } 
   scope :popular_courses, -> { limit(3).order(enrollments_count: :desc, created_at: :desc) }
   scope :top_rated_courses, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
@@ -68,6 +62,18 @@ class Course < ApplicationRecord
   
   def bought(user)
     self.enrollments.where(user_id: [user.id], course_id: [self.id]).empty?
+  end
+  
+  def progress(user)
+    unless self.lessons.count == 0 #if self.lessons.count != 0
+      user_lessons.where(user: user).count / self.lessons.count.to_f * 100
+    end
+  end
+  
+  
+  def calculate_income
+    update_column :income, (enrollments.map(&:price).sum)  # update_column(name, value)
+    user.calculate_balance
   end
   
   def update_rating
