@@ -39,11 +39,16 @@
 ###### Aws-sdk-s3 -> s3 storage for files
 ###### Image_processing -> for showing images in action text - must be used with image magic
 ###### recaptcha -> check for no robots
+###### cocoon for making multi edit of tasks
+###### Wicked PDF to generate pdf
+###### Wicked gem for multistep form
 
+###### ActionMailer for sending outbound emails 
 ###### AWS-SES -> for sending emails
 ###### GMAIL_SMTP -> for sending emails
 ###### google analytics
 ###### Youtube embed in action text
+###### Stripe for payments
 * ...
 
 
